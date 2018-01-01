@@ -10,3 +10,80 @@ License URI: http://www.gnu.org/licenses/glp-2.0.html
 Tags: restaurant, mobile first, responsive, pizza
 Text Domain: lapizzeria
 */
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+h1 {
+    font-size: 48px;
+}
+h2 {
+    font-size: 40px;
+}
+h3 {
+    font-size: 28px;
+}
+h4 {
+    font-size: 24px;
+}
+.clear,
+.clear:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/** HEADER **/
+header.site-header {
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 30px;
+}
+div.logo {
+    text-align: center;
+}
+@media only screen and (min-width: 768px) {
+    div.logo {
+        text-align: left;
+    }
+}
+@media only screen and (min-width: 992px) {
+    div.logo {
+        text-align: center;
+    }
+}
+img.logoimage {
+    width: 250px;
+}
+@media only screen and (min-width: 768px) {
+    header.site-header .container {
+        position: relative;
+    }
+    header.site-header .header-information {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+div.address {
+    display: block;
+    clear: both;
+    padding-top: 10px;
+}
+div.address p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}
+@media only screen and (min-width: 768px) {
+    div.address p {
+        text-align: right;
+    }
+}
