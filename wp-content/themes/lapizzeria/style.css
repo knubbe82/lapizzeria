@@ -54,6 +54,9 @@ h4 {
 .text-center {
     text-align: center;
 }
+.primary-text {
+    color: #a61206;
+}
 
 /** HEADER **/
 header.site-header {
@@ -174,7 +177,8 @@ nav.site-nav ul li a {
     color: #000000;
     font-family: 'Raleway', sans-serif;
 }
-nav.site-nav ul li.current_page_item a {
+nav.site-nav ul li.current_page_item a,
+.single-specialties nav.site-nav ul li.menu-item-27 a {
     border-bottom: 8px solid #a61206;
 }
 
@@ -408,4 +412,68 @@ footer p {
 }
 footer p.copyright {
     margin-top: 20px;
+}
+
+/** GRID **/
+img {
+    max-width: 100%;
+    height: auto;
+}
+@media only screen and (min-width: 768px) {
+    .container-grid {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    .container-grid::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    [class*='columns'] {
+        padding: 0 10px;
+        float: left;
+    }
+    .columns2-4 {
+        width: 50%;
+    }
+}
+
+/** SPECIALTIES **/
+.our-specialties {
+    padding: 0 60px;
+}
+.specialty-content {
+    padding: 20px;
+}
+.specialty-content a {
+    color: #000000;
+    text-decoration: none;
+}
+.specialty-content h4 {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 15px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+}
+.specialty-content h4 span {
+    float: right;
+    font-size: 30px;
+    color: #f19f30;
+    font-family: 'Open Sans', sans-serif;
+}
+.specialty-content p {
+    color: #3d3d3d;
+    line-height: 30px;
+}
+
+/** Single Specialty Template **/
+.single-specialties p.ingredients,
+.single-specialties p.price {
+    color: #a61206;
+    font-size: 30px;
+    margin: 0;
+}
+.single-specialties p.price span {
+    color: #000;
 }
