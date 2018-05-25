@@ -14,11 +14,21 @@ $(document).ready(function () {
            $('nav.site-nav').hide();
        }
    });
-   // Adapt the height of the images to the div elements
-    var images = $('.box-image');
-    var imageHeight = images[0].height;
-    var boxes = $('.content-box');
-    $(boxes).each(function(i, element) {
-        $(element).css({'height': imageHeight + 'px'});
+
+   // Fluidbox plugin
+    jQuery('.gallery a').each(function () {
+       jQuery(this).attr({'data-fluidbox': ''});
     });
+
+    if(jQuery('[data-fluidbox]').length > 0) {
+        jQuery('[data-fluidbox]').fluidbox();
+    }
+
+   // Adapt the height of the images to the div elements
+   //  var images = $('.box-image');
+   //  var imageHeight = images[0].height;
+   //  var boxes = $('.content-box');
+   //  $(boxes).each(function(i, element) {
+   //      $(element).css({'height': imageHeight + 'px'});
+   //  });
 });
