@@ -1,4 +1,8 @@
 <?php
+// Link or Import the database.php file (this contains the SQL structure)
+require get_template_directory() . '/inc/database.php';
+// Handles the submission to the database
+require get_template_directory() . '/inc/reservations.php';
 
 function lapizzeria_setup()
 {
