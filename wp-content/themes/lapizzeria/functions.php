@@ -3,12 +3,15 @@
 require get_template_directory() . '/inc/database.php';
 // Handles the submission to the database
 require get_template_directory() . '/inc/reservations.php';
+// Creates Option Pages for the Theme
+require get_template_directory() . '/inc/options.php';
 
 function lapizzeria_setup()
 {
     add_theme_support('post-thumbnails');
     add_image_size('boxes', 437, 291, true);
     add_image_size('specialties', 768, 515, true);
+    add_image_size('specialty-portrait', 435, 530, true);
     update_option('thumbnail_size_w', 253);
     update_option('thumbnail_size_h', 164);
 }
