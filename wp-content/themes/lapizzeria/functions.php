@@ -35,10 +35,12 @@ function lapizzeria_styles()
 
     wp_register_script('script', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0', true);
     wp_register_script('fluidboxjs', get_template_directory_uri() . '/js/jquery.fluidbox.min.js', array('jquery'), '1.0.0', true);
+    wp_register_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAaEFFh61wrV72zHpyziyr1Wk0ZUx43BDs&callback=initMap', array(), '', true);
     // add JavaScript files
     wp_enqueue_script('jquery');
     wp_enqueue_script('script');
     wp_enqueue_script('fluidboxjs');
+    wp_enqueue_script('googlemaps');
 }
 add_action('wp_enqueue_scripts', 'lapizzeria_styles');
 
@@ -84,7 +86,7 @@ function lapizzeria_specialties() {
         'hierarchical'       => false,
         'menu_position'      => 6,
         'supports'           => array( 'title', 'editor', 'thumbnail' ),
-        'taxonomies'          => array( 'category' ),
+        'taxonomies'         => array( 'category' ),
     );
 
     register_post_type( 'specialties', $args );
@@ -105,3 +107,11 @@ function lapizzeria_widgets()
     ));
 }
 add_action('widgets_init', 'lapizzeria_widgets');
+
+function add_async_defer($tag, $handle) {
+    if ('googlemaps' !== $handle) {
+        return $tag;
+    }
+    return str_replace(' src', 'async="async" defer="defer" src', $tag);
+}
+add_filter('script_loader_tag', 'add_async_defer', 10, 2);
