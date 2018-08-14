@@ -8,8 +8,8 @@
                 wp_nav_menu($args);
             ?>
             <div class="location">
-                <p>8179 Bay Avenue  Mountain View, CA 94043</p>
-                <p>Phone Number: +1-92-456-7890</p>
+                <p><?php echo esc_html(get_option('lapizzeria_location')); ?></p>
+                <p>Phone Number: <?php echo esc_html(get_option('lapizzeria_phonenumber')); ?></p>
             </div>
             <p class="copyright">All rights reserved <?php echo date('Y') ?></p>
         </footer>

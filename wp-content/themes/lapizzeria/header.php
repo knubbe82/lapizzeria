@@ -5,6 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Make this iOS compatible -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="La Pizzeria Restaurant">
+    <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri() ?>/apple-touch-icon.jpg">
     <title>La Pizzeria</title>
     <?php wp_head(); ?>
 </head>
@@ -34,8 +38,8 @@
                 ?>
             </div> <!-- .socials -->
             <div class="address">
-                <p>8179 Bay Avenue Mountain View, CA 94843</p>
-                <p>Phone Number: +1-92-456-7890</p>
+                <p><?php echo esc_html(get_option('lapizzeria_location')); ?></p>
+                <p>Phone Number: <?php echo esc_html(get_option('lapizzeria_phonenumber')); ?></p>
             </div>
         </div> <!-- .header-information -->
     </div>
