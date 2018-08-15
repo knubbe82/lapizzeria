@@ -1,4 +1,26 @@
 <?php
+function lapizzeria_delete_reservation() {
+    if ($_POST['type'] == 'delete'):
+        global $wpdb;
+        $table = $wpdb->prefix . 'reservations';
+        $id_reservations = $_POST['id'];
+        $result = $wpdb->delete($table, array('id' => $id_reservations), array('%d'));
+
+        if ($result == 1) {
+            $response = array(
+                'response' => 'success',
+                'id' => $id_reservations
+            );
+        } else {
+            $response = array(
+                'response' => 'error',
+            );
+        }
+    endif;
+    die(json_encode($response));
+}
+add_action('wp_ajax_lapizzeria_delete_reservation', 'lapizzeria_delete_reservation');
+
 function lapizzeria_save_reservation() {
     global $wpdb;
     if(isset($_POST['reservation']) && $_POST['hidden'] == "1") {

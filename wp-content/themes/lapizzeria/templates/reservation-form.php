@@ -5,7 +5,7 @@
             <input type="text" name="name" placeholder="Name" required>
         </div>
         <div class="field">
-            <input type="datetime-local" name="date" placeholder="Date" required>
+            <input type="datetime-local" name="date" placeholder="Date" step="300" required>
         </div>
         <div class="field">
             <input type="text" name="email" placeholder="E-Mail">
@@ -17,6 +17,9 @@
         <div class="field">
             <textarea name="message" placeholder="Message" requires></textarea>
         </div>
+
+        <div class="g-recaptcha" data-sitekey="6Ld5JmoUAAAAAKB3ql17F5xZ0yH1MwhTsNE7MMWN"></div>
+        
         <input type="submit" name="reservation" class="button" value="Send">
 
         <input type="hidden" name="hidden" value="1">

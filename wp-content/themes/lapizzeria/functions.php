@@ -14,8 +14,18 @@ function lapizzeria_setup()
     add_image_size('specialty-portrait', 435, 530, true);
     update_option('thumbnail_size_w', 253);
     update_option('thumbnail_size_h', 164);
+    add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'lapizzeria_setup');
+
+function lapizzeria_custom_logo() {
+    $logo = array(
+        'height' => 200,
+        'width' => 250,
+    );
+    add_theme_support('custom-logo', $logo);
+}
+add_action('after_setup_theme', 'lapizzeria_custom_logo');
 
 function lapizzeria_styles()
 {
@@ -24,6 +34,7 @@ function lapizzeria_styles()
     wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.css', array(), '7.0.0');
     wp_register_style('fluidboxcss', get_template_directory_uri() . '/css/fluidbox.min.css', array(), '7.0.0');
     wp_register_style('fontawesome', get_template_directory_uri() . '/css/font-awesome.css', array(), '4.7.0');
+    wp_register_style('datetime-local', get_template_directory_uri() . '/css/datetime-local-polyfill.css', array(), '1.0.0');
     wp_register_style('style', get_template_directory_uri() . '/style.css', array('normalize'), '1.0');
 
     // enqueue the style
@@ -31,17 +42,26 @@ function lapizzeria_styles()
     wp_enqueue_style('fluidboxcss');
     wp_enqueue_style('fontawesome');
     wp_enqueue_style('googlefont');
+    wp_enqueue_style('datetime-local');
     wp_enqueue_style('style');
 
     $apikey = esc_html(get_option('lapizzeria_gmap_apikey'));
     wp_register_script('script', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0', true);
     wp_register_script('fluidboxjs', get_template_directory_uri() . '/js/jquery.fluidbox.min.js', array('jquery'), '1.0.0', true);
+    wp_register_script('datetime-local-polyfill', get_template_directory_uri() . '/js/datetime-local-polyfill.min.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ,'modernizr'), '1.0.0', true);
     wp_register_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key='. $apikey .'&callback=initMap', array(), '', true);
+    wp_register_script('modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array('jquery'), '2.8.3', true);
+    wp_register_script('recaptcha', 'https://www.google.com/recaptcha/api.js');
     // add JavaScript files
     wp_enqueue_script('jquery');
+    wp_enqueue_script('jquery-ui-core');
+    wp_enqueue_script('jquery-ui-datepicker');
+    wp_enqueue_script('datetime-local-polyfill');
+    wp_enqueue_script('modernizr');
     wp_enqueue_script('script');
     wp_enqueue_script('fluidboxjs');
     wp_enqueue_script('googlemaps');
+    wp_enqueue_script('recaptcha');
 
     wp_localize_script(
       'script',
@@ -51,10 +71,24 @@ function lapizzeria_styles()
           'longitude' => esc_html(get_option('lapizzeria_gmap_longitude')),
           'zoom' => esc_html(get_option('lapizzeria_gmap_zoom')),
       )
-
     );
 }
 add_action('wp_enqueue_scripts', 'lapizzeria_styles');
+
+function lapizzeria_admin_scripts() {
+    // Sweet alert 2
+    wp_enqueue_style('sweetalert', get_template_directory_uri() . '/css/sweetalert2.min.css');
+    wp_enqueue_script('adminjs', get_template_directory_uri() . '/js/admin_ajax.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('sweetalertjs', get_template_directory_uri() . '/js/sweetalert2.min.js', array('jquery'), '1.0', true);
+
+    wp_localize_script(
+        'adminjs',
+        'admin_ajax',
+        array('ajaxurl' => admin_url('admin-ajax.php'))
+    );
+}
+
+add_action('admin_enqueue_scripts', 'lapizzeria_admin_scripts');
 
 // add menus
 function lapizzeria_menus()

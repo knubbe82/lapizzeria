@@ -108,6 +108,7 @@ function lapizzeria_reservations() { ?>
                     <th class="manage-column">Email</th>
                     <th class="manage-column">Phone Number</th>
                     <th class="manage-column">Message</th>
+                    <th class="manage-column">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,6 +124,11 @@ function lapizzeria_reservations() { ?>
                         <td><?php echo $reservation['email']; ?></td>
                         <td><?php echo $reservation['phone']; ?></td>
                         <td><?php echo $reservation['message']; ?></td>
+                        <td>
+                            <a href="" class="remove_reservation" data-reservation="<?php echo $reservation['id']; ?>">
+                                Remove
+                            </a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
 
