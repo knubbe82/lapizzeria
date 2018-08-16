@@ -19,7 +19,7 @@
         </div>
 
         <div class="g-recaptcha" data-sitekey="6Ld5JmoUAAAAAKB3ql17F5xZ0yH1MwhTsNE7MMWN"></div>
-        
+
         <input type="submit" name="reservation" class="button" value="Send">
 
         <input type="hidden" name="hidden" value="1">

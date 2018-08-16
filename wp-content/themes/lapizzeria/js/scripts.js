@@ -77,3 +77,31 @@ $(document).ready(function () {
         }
     }
 });
+
+$(window).load(function() {
+    var map = $('#map');
+    var breakpoint = 768;
+    if (map.length > 0) {
+        if ($(document).width() >= breakpoint) {
+            displayMap(0);
+        } else {
+            displayMap(300);
+        }
+    }
+    $(window).resize(function () {
+        if ($(document).width() >= breakpoint) {
+            displayMap(0);
+        } else {
+            displayMap(300);
+        }
+    });
+    function displayMap(value) {
+        if (value == 0) {
+            var locationSection = $('.location-reservation');
+            var locationHeight = locationSection.height();
+            $('#map').css({'height': locationHeight});
+        } else {
+            $('#map').css({'height': value});
+        }
+    }
+})
